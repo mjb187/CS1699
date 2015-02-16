@@ -43,7 +43,7 @@ public class CoffeeMakerTest
 	
 	/*-------------------------------------------------*/
 	
-	//test that the program will run with the null character as an argument
+	//test that the function will accept the null character as an argument
 	@Test
 	public void testRunArgs_nullCharacter() 
 	{
@@ -55,7 +55,7 @@ public class CoffeeMakerTest
 	
 	/*-------------------------------------------------*/
 	
-	//test that the program will run with a short string of english words
+	//test that the function will accept a short string of english words
 	@Test
 	public void testRunArgs_reasonableString() 
 	{
@@ -67,7 +67,7 @@ public class CoffeeMakerTest
 	
 	/*-------------------------------------------------*/
 	
-	//test that the program will run with a long string of jibberish (https://www.random.org/strings/)
+	//test that the function will accept a long string of jibberish (https://www.random.org/strings/)
 	@Test
 	public void testRunArgs_unreasonableString() 
 	{
@@ -79,7 +79,7 @@ public class CoffeeMakerTest
 	
 	/*-------------------------------------------------*/
 	
-	//test that the program will run with a string of special characters
+	//test that the function will accept a string of special characters
 	@Test
 	public void testRunArgs_specialChars() 
 	{
