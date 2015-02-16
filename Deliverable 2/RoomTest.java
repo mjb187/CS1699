@@ -175,7 +175,19 @@ public class RoomTest
 	
 	/*-------------------------------------------------*/
 	
-	//check that a room with a north exit is properly validated
+	//check that a room with both exits is properly validated
+	@Test
+	public void testNorthExit_both() 
+	{
+		Room testRoom = new Room(false, false, false, true, true);
+		boolean result = testRoom.northExit();
+		
+		assertTrue(result);
+	}
+	
+	/*-------------------------------------------------*/
+	
+	//check that a room with a south exit is properly validated
 	@Test
 	public void testSouthExit_true() 
 	{
@@ -187,7 +199,7 @@ public class RoomTest
 	
 	/*-------------------------------------------------*/
 	
-	//check that a room without a north exit is properly validated
+	//check that a room without a south exit is properly validated
 	@Test
 	public void testSouthExit_false() 
 	{
@@ -195,6 +207,18 @@ public class RoomTest
 		boolean result = testRoom.southExit();
 		
 		assertFalse(result);
+	}
+	
+	/*-------------------------------------------------*/
+	
+	//check that a room with both exits is properly validated
+	@Test
+	public void testSouthExit_both() 
+	{
+		Room testRoom = new Room(false, false, false, true, true);
+		boolean result = testRoom.southExit();
+		
+		assertTrue(result);
 	}
 	
 	/*-------------------------------------------------*/
@@ -215,10 +239,10 @@ public class RoomTest
 	@Test
 	public void testGetDescription_twoSimilarRooms() 
 	{
-		Room testRoom1 = new Room(false, false, false, false, false);
+		Room testRoom1 = new Room(false, true, false, false, true);
 		String result1 = testRoom1.getDescription();
 		
-		Room testRoom2 = new Room(false, false, false, false, false);
+		Room testRoom2 = new Room(false, true, false, false, true);
 		String result2 = testRoom2.getDescription();
 		
 		assertNotEquals(result1, result2);
@@ -241,7 +265,7 @@ public class RoomTest
 	
 	/*-------------------------------------------------*/
 	
-	//alternate test for different rooms having different descriptions
+	//check that two Rooms have different descriptions even after all the adjectives and nouns have been exhausted
 	@Test
 	public void testGetDescription_samePseudorandomValue() 
 	{
