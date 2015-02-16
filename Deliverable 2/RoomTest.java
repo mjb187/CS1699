@@ -1,11 +1,16 @@
 //Code written by Mike Byrne
 //	mjb187@pitt.edu
 
+//Not tested:
+//	private String getAdjective()
+//	private String getNoun()
+//	private String generateDescription()
+
 import static org.junit.Assert.*;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 
 public class RoomTest 
 {
@@ -232,6 +237,38 @@ public class RoomTest
 		String result2 = testRoom2.getDescription();
 		
 		assertNotEquals(result1, result2);
+	}
+	
+	/*-------------------------------------------------*/
+	
+	//alternate test for different rooms having different descriptions
+	@Test
+	public void testGetDescription_samePseudorandomValue() 
+	{
+		Room testRoom1 = new Room(false, false, false, false, false);
+		String result1 = testRoom1.getDescription();
+		
+		Room testRoom2 = null;
+		for(int i = 0; i < 324; i++)
+			testRoom2 = new Room(false, false, false, false, false);
+		String result2 = testRoom2.getDescription();
+		
+		assertNotEquals(result1, result2);
+	}
+	
+	/*-------------------------------------------------*/
+	
+	//test that incrementing the internal pseudorandom pointer to an absurd amount doesn't create any issues
+	@Test
+	public void testGetDescription_largeIncrement() 
+	{
+		Room testRoom = null;
+		for(int i = 0; i < Integer.MAX_VALUE + 1; i++)
+			testRoom = new Room(false, false, false, false, false);
+		assertNotNull(testRoom);
+		
+		String result = testRoom.getDescription();
+		assertNotNull(result);
 	}
 
 }
