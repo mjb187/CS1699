@@ -1,7 +1,10 @@
-package com.laboon;
+//package com.laboon;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -19,6 +22,18 @@ public class GameTest {
 	@Mock
 	House mockHouse = mock(House.class);
 	Player mockPlayer = mock(Player.class);
+	
+	private final ByteArrayOutputStream output = new ByteArrayOutputStream();
+
+	@Before
+	public void setUpStreams() {
+	    System.setOut(new PrintStream(output));
+	}
+
+	@After
+	public void cleanUpStreams() {
+	    System.setOut(null);
+	}
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -87,6 +102,24 @@ public class GameTest {
 		g.doSomething("D");
 		g.doSomething("d");
 		verify(mockPlayer, times(2)).drink();
+	}
+	
+	//When doSomething() is called with an argument of "H" (case insensitive),
+	//Player should execute its help method as defined in the requirements
+	//commands should be recognized by the program
+	@Test
+	public void testHelp(){
+		//flush stream
+		output.toString();
+		
+		g = new Game(mockPlayer, mockHouse);
+		
+		g.doSomething("H");
+		assertNotEquals("What?", output.toString().trim());
+		
+		g.doSomething("h");
+		assertNotEquals("What?", output.toString().trim());
+		
 	}
 	
 	//When doSomething() is called with an invalid argument (www.random.org/strings),
